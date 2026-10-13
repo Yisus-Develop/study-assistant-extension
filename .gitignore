@@ -1,0 +1,10 @@
+# Logs del puente opencode
+tools/*.log
+tools/*.log.err
+
+# Dependencias
+node_modules/
+
+# Sistema
+Thumbs.db
+.DS_Store

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Study Assistant — Preguntas falladas</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Open Sans", "Segoe UI", system-ui, sans-serif;
+      background: radial-gradient(circle at 20% 0%, #1e1b4b 0%, #0f172a 55%, #020617 100%);
+      color: #e5e7eb;
+      min-height: 100vh;
+      padding: 32px 16px;
+    }
+    .wrap { max-width: 780px; margin: 0 auto; }
+    h1 { font-size: 22px; margin-bottom: 4px; display: flex; align-items: center; gap: 10px; }
+    h1 .dot { width: 12px; height: 12px; border-radius: 50%; background: #f87171; box-shadow: 0 0 10px rgba(248,113,113,.9); }
+    .sub { color: #9ca3af; font-size: 13px; margin-bottom: 24px; }
+    .toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; gap: 10px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: #fff; border: none; border-radius: 8px;
+      padding: 10px 18px; font-size: 13px; font-weight: 600;
+      cursor: pointer; font-family: inherit;
+    }
+    .btn:hover { opacity: .9; }
+    .btn.ghost { background: rgba(255,255,255,0.08); color: #d1d5db; }
+    .btn.danger { background: linear-gradient(135deg, #ef4444, #b91c1c); }
+    .card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 14px;
+    }
+    .qhead { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
+    .qid { font-size: 12px; color: #94a3b8; font-weight: 600; }
+    .qdate { font-size: 11px; color: #6b7280; }
+    .qtext { font-size: 14px; line-height: 1.5; margin-bottom: 10px; }
+    .opts { margin-bottom: 10px; }
+    .opt {
+      display: flex; gap: 8px; padding: 7px 10px; border-radius: 8px;
+      font-size: 13px; line-height: 1.45; margin-bottom: 5px;
+      background: rgba(0,0,0,0.22); border: 1px solid rgba(255,255,255,0.06);
+    }
+    .opt .letter { font-weight: 700; color: #cbd5e1; min-width: 16px; }
+    .opt.is-pick { border-color: #f87171; background: rgba(248,113,113,0.1); }
+    .opt.is-pick .letter { color: #f87171; }
+    .opt.is-correct { border-color: #34d399; background: rgba(52,211,153,0.1); }
+    .opt.is-correct .letter { color: #34d399; }
+    .sec { font-size: 12px; font-weight: 700; color: #93c5fd; text-transform: uppercase; letter-spacing: .4px; margin: 12px 0 6px; }
+    .expl { font-size: 13px; line-height: 1.55; color: #cbd5e1; white-space: pre-wrap; }
+    .expl.official { border-left: 3px solid #60a5fa; padding-left: 10px; }
+    .expl.ai { border-left: 3px solid #8b5cf6; padding-left: 10px; }
+    .del { background: none; border: none; color: #94a3b8; cursor: pointer; font-size: 12px; font-family: inherit; padding: 2px 6px; border-radius: 6px; }
+    .del:hover { color: #f87171; background: rgba(248,113,113,.1); }
+    .empty { text-align: center; color: #6b7280; padding: 60px 0; font-size: 14px; }
+    .empty .big { font-size: 40px; margin-bottom: 10px; }
+    .saved { position: fixed; bottom: 20px; right: 20px; background: #10b981; color: #fff; padding: 10px 18px; border-radius: 8px; font-size: 13px; font-weight: 600; opacity: 0; transition: opacity .3s; }
+    .saved.show { opacity: 1; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1><span class="dot"></span> Study Assistant · Preguntas falladas</h1>
+    <p class="sub">Las respuestas que has errado en los tests de bomcondutor.pt quedan guardadas aquí para repasarlas.</p>
+
+    <div class="toolbar">
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+        <select id="sectionFilter" style="background:rgba(0,0,0,0.35);border:1px solid rgba(255,255,255,0.12);color:#fff;border-radius:8px;padding:7px 10px;font-size:12px;"><option value="all">Todas las secciones</option></select>
+        <span id="count" style="font-size:12px; color:#9ca3af;"></span>
+      </div>
+      <div style="display:flex; gap:10px;">
+        <button class="btn ghost" id="clearSectionBtn" style="display:none;">🗑 Borrar sección</button>
+        <button class="btn ghost" id="backBtn">← Ajustes</button>
+        <button class="btn danger" id="clearBtn">🗑 Todo</button>
+      </div>
+    </div>
+
+    <div id="list"></div>
+  </div>
+
+  <div class="saved" id="toast">Pregunta eliminada</div>
+
+  <script src="wrong.js"></script>
+</body>
+</html>

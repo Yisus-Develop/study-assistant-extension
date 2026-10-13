@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    body {
+      font-family: "Open Sans", "Segoe UI", system-ui, sans-serif;
+      background: #0f172a;
+      color: #e5e7eb;
+      width: 300px;
+      margin: 0;
+      padding: 16px;
+    }
+    h1 { font-size: 15px; margin: 0 0 2px; display: flex; align-items: center; gap: 8px; }
+    h1 .dot { width: 10px; height: 10px; border-radius: 50%; background: #2ea860; box-shadow: 0 0 8px rgba(46,168,96,.9); }
+    .sub { font-size: 11px; color: #9ca3af; margin-bottom: 14px; }
+    .stat { font-size: 12px; padding: 10px 12px; border-radius: 8px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08); margin-bottom: 10px; line-height: 1.5; }
+    .stat b { color: #fff; }
+    .stat .val { color: #34d399; }
+    .btn {
+      display: block; width: 100%; text-align: center;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: #fff; border: none; border-radius: 8px;
+      padding: 10px; font-size: 13px; font-weight: 600;
+      cursor: pointer; font-family: inherit; margin-top: 8px;
+    }
+    .btn:hover { opacity: .9; }
+    .btn.ghost { background: rgba(255,255,255,.08); color: #d1d5db; }
+    .footer { font-size: 10px; color: #6b7280; margin-top: 12px; text-align: center; }
+  </style>
+</head>
+<body>
+  <h1><span class="dot"></span> Study Assistant</h1>
+  <p class="sub">Explicador de respuestas en bomcondutor.pt</p>
+  <div class="stat" id="status">Cargando estado...</div>
+  <button class="btn" id="wrong">❌ Ver preguntas falladas</button>
+  <button class="btn" id="options">⚙ Abrir ajustes</button>
+  <div class="footer">Se activa automáticamente en los tests (/teste/*)</div>
+  <script src="popup.js"></script>
+</body>
+</html>

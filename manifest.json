@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "Study Assistant — Explicador Código (Bom Condutor)",
+  "version": "1.2.0",
+  "description": "Mientras haces tests en bomcondutor.pt te dice al instante por qué tu respuesta es correcta o errónea, con la explicación oficial (PT) y una explicación didáctica en español generada por IA (OpenCode Zen, Gemini, OpenAI, Anthropic, OpenRouter, NVIDIA u Ollama local). Usa automáticamente las claves configuradas en opencode.",
+  "permissions": ["storage", "tabs"],
+  "host_permissions": [
+    "https://www.bomcondutor.pt/*",
+    "https://bomcondutor.pt/*",
+    "https://opencode.ai/*",
+    "https://generativelanguage.googleapis.com/*",
+    "https://api.openai.com/*",
+    "https://api.anthropic.com/*",
+    "https://openrouter.ai/*",
+    "https://integrate.api.nvidia.com/*",
+    "http://localhost/*",
+    "http://127.0.0.1/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.bomcondutor.pt/teste/*",
+        "https://bomcondutor.pt/teste/*"
+      ],
+      "js": ["content/content.js"],
+      "css": ["content/content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_page": "options/options.html",
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "Study Assistant Bom Condutor"
+  }
+}
