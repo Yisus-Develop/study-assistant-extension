@@ -132,4 +132,4 @@ study-assistant-extension/
 
 ## 📄 Licencia
 
-Uso personal y educativo. Consulta la licencia del repositorio.
+[MIT](LICENSE) — libre para uso personal, educativo y comercial (con copyright conservado). No incluye claves API: cada usuario usa las suyas propias.
